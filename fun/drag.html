@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <li class="postit" style="position: relative; width: 300px; height: 300px; border: 1px solid black">asdasd</li>
+
+        <script>
+            $(function () {
+                $('.postit').on('mousedown', function (e) {
+                    let $this = $(this);
+                    let startX = e.pageX - $this.offset().left; // 시작 X좌표 = 페이지 기준 마우스좌표 - 메모의 x 위치
+                    let startY = e.pageY - $this.offset().top;
+
+                    $(document).on('mousemove.draggable', function (e) {
+                        let newLeft = e.pageX - startX;
+                        let newTop = e.pageY - startY;
+                        console.log(newLeft, newTop);
+                        $this.css({ left: newLeft, top: newTop });
+                        e.preventDefault();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
